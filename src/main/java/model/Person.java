@@ -1,7 +1,7 @@
 package model;
 
 public class Person {
-    private final int personId;
+    private int personId;
     private String firstName;
     private String lastName;
 
@@ -31,4 +31,5 @@ public class Person {
     public void setLastName(String lastName) { // We need to set the name
         this.lastName = lastName;
     }
+
 }
