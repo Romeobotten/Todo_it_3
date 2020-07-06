@@ -39,4 +39,30 @@ public class TodoItemsTest {
         // Assert
         assertTrue(TodoItems.findById(1003).equals(task3));
     }
+
+    @Test
+    public void TestFindByDoneStatus() {
+        // Arrange
+        TodoSequencer.reset();
+        TodoItems.Clear();
+        // Act
+        Todo task1 = TodoItems.CreateNewTodo("Work");
+        Todo task2 = TodoItems.CreateNewTodo("Sleep");
+        Todo task3 = TodoItems.CreateNewTodo("Eat");
+        // Assert
+        assertTrue(!TodoItems.findByDoneStatus(false)[2].isDone());
+    }
+
+    @Test
+    public void TestFindUnassignedTodoItems() {
+        // Arrange
+        TodoSequencer.reset();
+        TodoItems.Clear();
+        // Act
+        Todo task1 = TodoItems.CreateNewTodo("Work");
+        Todo task2 = TodoItems.CreateNewTodo("Sleep");
+        Todo task3 = TodoItems.CreateNewTodo("Eat");
+        // Assert
+        assertTrue(TodoItems.findUnassignedTodoItems()[2].getDescription() == "Eat");
+    }
 }
