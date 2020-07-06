@@ -1,14 +1,14 @@
 package data;
 
 public class PersonSequencer {
-private static int personId;
+private static int personId = 100;
 
 public static int nextPersonId(){
-    personId++;
-    return personId;
+    PersonSequencer.personId++;
+    return PersonSequencer.personId;
     }
 public static void reset(){
-    personId = 0;
+    PersonSequencer.personId = 100;
 }
     
 }

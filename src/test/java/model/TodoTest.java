@@ -1,12 +1,10 @@
 package model;
 
+import data.TodoSequencer;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * Unit test for simple App.
- */
 public class TodoTest
 {
     /**
@@ -14,22 +12,56 @@ public class TodoTest
      * Arrange
      * Act
      * Assert
-     *
      */
 
-Todo uppgift1 = new Todo(1, "jobba");
-
     @Test
-    public void TestGetTodoId()
+    public void TestGetTodoId1()
     {
-        assertTrue(uppgift1.getTodoId() == 1 );
+        // Arrange
+        TodoSequencer.reset();
+        // Act
+        Todo task1 = new Todo("Work");
+        Todo task2 = new Todo("Sleep");
+        Todo task3 = new Todo("Eat");
+        // Assert
+        assertTrue(task1.getTodoId() == 1001);
+    }
+    @Test
+    public void TestGetTodoId2()
+    {
+        // Arrange
+        TodoSequencer.reset();
+        // Act
+        Todo task1 = new Todo("Work");
+        Todo task2 = new Todo("Sleep");
+        Todo task3 = new Todo("Eat");
+        // Assert
+        assertTrue(task2.getTodoId() == 1002);
     }
 
-
     @Test
-    public void TestGetDescription()
+    public void TestGetTodoId3()
     {
-        assertTrue(uppgift1.getDescription().equals("jobba"));
+        // Arrange
+        TodoSequencer.reset();
+        // Act
+        Todo task1 = new Todo("Work");
+        Todo task2 = new Todo("Sleep");
+        Todo task3 = new Todo("Eat");
+        // Assert
+        assertTrue(task3.getTodoId() == 1003);
     }
 
+    @Test
+    public void TestGetDescription1()
+    {
+        // Arrange
+        TodoSequencer.reset();
+        // Act
+        Todo task1 = new Todo("Work");
+        Todo task2 = new Todo("Sleep");
+        Todo task3 = new Todo("Eat");
+        // Assert
+        assertTrue(task1.getDescription().equals("Work"));
+    }
 }

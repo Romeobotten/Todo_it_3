@@ -8,29 +8,30 @@ public class People {
 
     private static Person[] peopleArray = new Person[0]; // An Array of Persons
 
-    public int size() {
+    public static int size() {
         return peopleArray.length;
     }
 
-    public Person[] findAll() {
+    public static Person[] findAll() {
         return peopleArray;
     }
 
-    public Person findById(int personId) {
+    public static Person findById(int personId) {
         for (int i = 0; i < size(); i++) {
-            if (peopleArray[i].getPersonId() == personId)
+            if (peopleArray[i].getPersonId() == personId) {
                 return peopleArray[i];
+            }
         }
         return null;
     }
 
-    public Person CreateNewPerson(String firstName, String lastName) {
+    public static Person CreateNewPerson(String firstName, String lastName) {
         peopleArray = Arrays.copyOf(peopleArray,size() + 1);
-              peopleArray[size() - 1] = new Person(PersonSequencer.nextPersonId(), firstName, lastName);
+              peopleArray[size() - 1] = new Person(firstName, lastName);
               return peopleArray[size() - 1];
     }
 
-    public void Clear() {
+    public static void Clear() {
         peopleArray = Arrays.copyOf(peopleArray, 0);
     }
 }

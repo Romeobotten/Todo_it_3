@@ -1,12 +1,10 @@
 package model;
 
+import data.PersonSequencer;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * Unit test for simple App.
- */
 public class PersonTest
 {
     /**
@@ -14,33 +12,82 @@ public class PersonTest
      * Arrange
      * Act
      * Assert
-     *
      */
 
-    Person theKing = new Person(1,"Elvis","Presley");
-    Person theQueen = new Person(2,"Freddie","Mercury");
-
     @Test
-    public void TestGetPersonId()
+    public void TestGetPersonId1()
     {
-        assertTrue(theKing.getPersonId() == 1 );
+        // Arrange
+        PersonSequencer.reset();
+        // Act
+        Person theKing = new Person("Elvis","Presley");
+        Person theQueen = new Person("Freddie","Mercury");
+        Person theBoss = new Person("Bruce", "Springsteen");
+        // Assert
+        assertTrue(theKing.getPersonId() == 101);
     }
 
     @Test
-    public void TestGetFirstName()
+    public void TestGetPersonId2()
     {
+        // Arrange
+        PersonSequencer.reset();
+        // Act
+        Person theKing = new Person("Elvis","Presley");
+        Person theQueen = new Person("Freddie","Mercury");
+        Person theBoss = new Person("Bruce", "Springsteen");
+        // Assert
+        assertTrue(theQueen.getPersonId() == 102);
+    }
+    @Test
+    public void TestGetPersonId3()
+    {
+        // Arrange
+        PersonSequencer.reset();
+        // Act
+        Person theKing = new Person("Elvis","Presley");
+        Person theQueen = new Person("Freddie","Mercury");
+        Person theBoss = new Person("Bruce", "Springsteen");
+        // Assert
+        assertTrue(theBoss.getPersonId() == 103);
+    }
+
+    @Test
+    public void TestGetFirstName1()
+    {
+        // Arrange
+        PersonSequencer.reset();
+        // Act
+        Person theKing = new Person("Elvis","Presley");
+        Person theQueen = new Person("Freddie","Mercury");
+        Person theBoss = new Person("Bruce", "Springsteen");
+        // Assert
         assertTrue(theKing.getFirstName().equals("Elvis"));
     }
 
     @Test
-    public void TestGetLastName()
+    public void TestGetLastName2()
     {
+        // Arrange
+        PersonSequencer.reset();
+        // Act
+        Person theKing = new Person("Elvis","Presley");
+        Person theQueen = new Person("Freddie","Mercury");
+        Person theBoss = new Person("Bruce", "Springsteen");
+        // Assert
         assertTrue(theQueen.getLastName().equals("Mercury"));
     }
-    @Test
-    public void TestGetPersonId2()
-    {
-        assertTrue(theQueen.getPersonId() == 2 );
-    }
 
+    @Test
+    public void TestGetFirstName3()
+    {
+        // Arrange
+        PersonSequencer.reset();
+        // Act
+        Person theKing = new Person("Elvis","Presley");
+        Person theQueen = new Person("Freddie","Mercury");
+        Person theBoss = new Person("Bruce", "Springsteen");
+        // Assert
+        assertTrue(theBoss.getFirstName().equals("Bruce"));
+    }
 }
