@@ -2,32 +2,31 @@ package data;
 
 import model.Person;
 import model.Todo;
-
 import java.util.Arrays;
 
 public class TodoItems {
 
-    private static Todo[] todoArray = new Todo[0]; // An Array of Things to do
+    private static Todo[] todoArray = new Todo[0]; // Array of Things to do
 
-    public static int size() {
+    public static int size() { // Number of tasks in the array
         return todoArray.length;
     }
 
-    public static Todo[] findAll() {
+    public static Todo[] findAll() { // Returns the complete array
         return todoArray;
     }
 
-    public static Todo findById(int TodoId) {
+    public static Todo findById(int todoId) {
         for (int i = 0; i < size(); i++) {
-            if (todoArray[i].getTodoId() == TodoId) {
+            if (todoArray[i].getTodoId() == todoId) {
                 return todoArray[i];
             }
         }
         return null;
     }
 
-    public static Todo CreateNewTodo(String description) {
-        todoArray = Arrays.copyOf(todoArray,size() + 1);
+    public static Todo createNewTodo(String description) {
+        todoArray = Arrays.copyOf(todoArray, size() + 1);
         todoArray[size() - 1] = new Todo(description);
         return todoArray[size() - 1];
     }
@@ -36,7 +35,7 @@ public class TodoItems {
         todoArray = Arrays.copyOf(todoArray, 0);
     }
 
-    public static Todo[] findByDoneStatus(boolean doneStatus){
+    public static Todo[] findByDoneStatus(boolean doneStatus) {
         Todo[] doneStatusArray = new Todo[0];
         for (int i = 0; i < size(); i++) {
             if (todoArray[i].isDone() == doneStatus) {
@@ -47,7 +46,7 @@ public class TodoItems {
         return doneStatusArray;
     }
 
-    public static Todo[] findByAssignee(int personId){
+    public static Todo[] findByAssignee(int personId) {
         Todo[] assigneeArray = new Todo[0];
         for (int i = 0; i < size(); i++) {
             if (todoArray[i].getAssignee().getPersonId() == personId) {
@@ -58,7 +57,7 @@ public class TodoItems {
         return assigneeArray;
     }
 
-    public static Todo[] findByAssignee(Person assignee){
+    public static Todo[] findByAssignee(Person assignee) {
         Todo[] assigneeArray = new Todo[0];
         for (int i = 0; i < size(); i++) {
             if (todoArray[i].getAssignee().equals(assignee)) {
@@ -69,7 +68,7 @@ public class TodoItems {
         return assigneeArray;
     }
 
-    public static Todo[] findUnassignedTodoItems(){
+    public static Todo[] findUnassignedTodoItems() {
         Todo[] unassignedArray = new Todo[0];
         for (int i = 0; i < size(); i++) {
             if (todoArray[i].getAssignee() == null) {
@@ -78,5 +77,18 @@ public class TodoItems {
             }
         }
         return unassignedArray;
+    }
+
+    public static boolean removeTodoItem(int todoId) {
+        for (int i = 0; i < size(); i++) {
+            if (todoArray[i].getTodoId() == todoId) {
+                for (int j = i; j < size() - 1; j++) {
+                    todoArray[j] = todoArray[j + 1];
+                }
+                todoArray = Arrays.copyOf(todoArray, size() - 1);
+                return true;
+            }
+        }
+        return false;
     }
 }

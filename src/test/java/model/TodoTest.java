@@ -2,11 +2,9 @@ package model;
 
 import data.TodoSequencer;
 import org.junit.Test;
-
 import static org.junit.Assert.assertTrue;
 
-public class TodoTest
-{
+public class TodoTest {
     /**
      * We are only going to do the basic tests, K I S S
      * Arrange
@@ -15,7 +13,7 @@ public class TodoTest
      */
 
     @Test
-    public void TestGetTodoId1()
+    public void TestGetTodoId()
     {
         // Arrange
         TodoSequencer.reset();
@@ -24,23 +22,12 @@ public class TodoTest
         Todo task2 = new Todo("Sleep");
         Todo task3 = new Todo("Eat");
         // Assert
-        assertTrue(task1.getTodoId() == 1001);
-    }
-    @Test
-    public void TestGetTodoId2()
-    {
-        // Arrange
-        TodoSequencer.reset();
-        // Act
-        Todo task1 = new Todo("Work");
-        Todo task2 = new Todo("Sleep");
-        Todo task3 = new Todo("Eat");
-        // Assert
-        assertTrue(task2.getTodoId() == 1002);
+        assertTrue((task1.getTodoId() == 1001) && (task2.getTodoId() == 1002) &&
+                (task3.getTodoId() == 1003));
     }
 
     @Test
-    public void TestGetTodoId3()
+    public void TestGetDescription()
     {
         // Arrange
         TodoSequencer.reset();
@@ -48,20 +35,37 @@ public class TodoTest
         Todo task1 = new Todo("Work");
         Todo task2 = new Todo("Sleep");
         Todo task3 = new Todo("Eat");
+        String doneSleeping = task2.getDescription();
+          task2.setDescription("Drink");
         // Assert
-        assertTrue(task3.getTodoId() == 1003);
+        assertTrue((task1.getDescription().equals("Work")) && (doneSleeping.equals("Sleep")) &&
+                (task2.getDescription().equals("Drink")) && (task3.getDescription().equals("Eat")));
     }
 
     @Test
-    public void TestGetDescription1()
+    public void TestDone()
     {
         // Arrange
         TodoSequencer.reset();
         // Act
         Todo task1 = new Todo("Work");
-        Todo task2 = new Todo("Sleep");
-        Todo task3 = new Todo("Eat");
+        task1.setDone(true);
+
         // Assert
-        assertTrue(task1.getDescription().equals("Work"));
+        assertTrue(task1.isDone());
+    }
+
+    @Test
+    public void TestAssign()
+    {
+        // Arrange
+        TodoSequencer.reset();
+        // Act
+        Todo task1 = new Todo("Work");
+        Person programmer = new Person("Steve","Wozniak");
+        task1.setAssignee(programmer);
+
+        // Assert
+        assertTrue(task1.getAssignee().getFirstName().equals("Steve"));
     }
 }

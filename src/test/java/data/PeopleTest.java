@@ -2,8 +2,8 @@ package data;
 
 import model.Person;
 import org.junit.Test;
-
 import static org.junit.Assert.assertTrue;
+
 public class PeopleTest {
     /**
      * We are only going to do the basic tests, K I S S
@@ -13,14 +13,13 @@ public class PeopleTest {
      */
 
     @Test
-    public void TestArrayLength()
-    {
+    public void TestArrayLength() {
         // Arrange
         PersonSequencer.reset();
         People.Clear();
         // Act
-        Person theKing = new Person("Elvis","Presley");
-        Person theQueen = new Person("Freddie","Mercury");
+        Person theKing = new Person("Elvis", "Presley");
+        Person theQueen = new Person("Freddie", "Mercury");
         Person theBoss = new Person("Bruce", "Springsteen");
         Person[] peopleArray = {theKing, theQueen, theBoss};
         // Assert
@@ -28,14 +27,13 @@ public class PeopleTest {
     }
 
     @Test
-    public void TestClear()
-    {
+    public void TestClear() {
         // Arrange
         PersonSequencer.reset();
         People.Clear();
         // Act
-        Person theKing = People.CreateNewPerson("Elvis","Presley");
-        Person theQueen = People.CreateNewPerson("Freddie","Mercury");
+        Person theKing = People.CreateNewPerson("Elvis", "Presley");
+        Person theQueen = People.CreateNewPerson("Freddie", "Mercury");
         Person theBoss = People.CreateNewPerson("Bruce", "Springsteen");
         int arrayLength = People.size();
         People.Clear();
@@ -44,16 +42,32 @@ public class PeopleTest {
     }
 
     @Test
-    public void TestFindPersonById()
-    {
+    public void TestFindPersonById() {
         // Arrange
         PersonSequencer.reset();
         People.Clear();
         // Act
-        Person theKing = People.CreateNewPerson("Elvis","Presley");
-        Person theQueen = People.CreateNewPerson("Freddie","Mercury");
+        Person theKing = People.CreateNewPerson("Elvis", "Presley");
+        Person theQueen = People.CreateNewPerson("Freddie", "Mercury");
         Person theBoss = People.CreateNewPerson("Bruce", "Springsteen");
         // Assert
         assertTrue(People.findById(103).equals(theBoss));
+    }
+
+    @Test
+    public void TestRemovePeople() {
+        // Arrange
+        PersonSequencer.reset();
+        People.Clear();
+        // Act
+        Person theKing = People.CreateNewPerson("Elvis", "Presley");
+        Person theQueen = People.CreateNewPerson("Freddie", "Mercury");
+        Person theBoss = People.CreateNewPerson("Bruce", "Springsteen");
+        // Assert
+        People.removePerson(102);
+        Person thePianist = People.CreateNewPerson("Elton", "John");
+        // Assert
+        assertTrue((People.findById(104).getFirstName() == "Elton") &&
+                (People.size() == 3) && (People.findById(102) == null));
     }
 }
